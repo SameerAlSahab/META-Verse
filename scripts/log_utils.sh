@@ -32,6 +32,11 @@ LOGW() {
     echo -e "\033[0;33m[WARN] $1\033[0m" >&2
 }
 
+LOGI()
+{
+    echo -e "\e[1;32m[INFO]\e[0m $1"
+}
+
 LOGS() {
     echo -e "\033[0;32m[DONE] $1\033[0m"
 }

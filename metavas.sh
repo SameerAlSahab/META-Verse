@@ -1,4 +1,4 @@
- # Copyright (c) 2026 Sameer Al Sahab
+# Copyright (c) 2026 Sameer Al Sahab
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 SRC_DIR=$PWD
@@ -39,6 +39,9 @@ OUT_DIR="$SRC_DIR/out"
 rm -rf "OUT_DIR"
 mkdir -p "$OUT_DIR"
 
+# Make sure we have everything installed in our environment
+. "$SRC_DIR/scripts/install_deps.sh"
+CHECK_DEPS
 
 LOG "- Decoding target APK: $TARGET_APK"
 java -jar "$TOOLS_DIR/apktool/apktool.jar" d -j $(nproc) "$TARGET_APK" -o "$TMP_DIR/target" > /dev/null || LOGE "Failed to decode target apk!"
@@ -116,5 +119,24 @@ else
 fi
 
 LOG --indent 2 "Building MetaVas..."
-java -jar "$TOOLS_DIR/apktool/apktool.jar" b -j $(nproc) "$TMP_DIR/payload" -o "$TMP_DIR/payload_unsigned.apk" > /dev/null
-java -jar "$TOOLS_DIR/signapk/signapk.jar" "$PEM" "$PK8" "$TMP_DIR/payload_unsigned.apk" "$OUT_DIR/metavas_launcher.apk" > /dev/null
+
+if ! java -jar "$TOOLS_DIR/apktool/apktool.jar" \
+    b -j "$(nproc)" \
+    "$TMP_DIR/payload" \
+    -o "$TMP_DIR/payload_unsigned.apk" > /dev/null; then
+
+    LOGE "Failed to build payload APK"
+    exit 1
+fi
+
+if ! java -jar "$TOOLS_DIR/signapk/signapk.jar" \
+    "$PEM" \
+    "$PK8" \
+    "$TMP_DIR/payload_unsigned.apk" \
+    "$OUT_DIR/metavas_launcher.apk" > /dev/null; then
+
+    LOGE "Failed to sign payload APK"
+    exit 1
+fi
+
+LOGS "Build successful. Check out/ for both APKs"
