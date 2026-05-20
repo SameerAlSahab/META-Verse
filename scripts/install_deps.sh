@@ -2,10 +2,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 DEPENDENCY_CONFIG=(
+    # Ubuntu / Arch (AUR)
     "openjdk-17-jdk|jdk17-openjdk|java|true"
     "python3|python|python|true"
-    "xmlstarlet|xmlstarlet|xmlstarlet|true"
-    "zipalign|android-sdk-build-tools|zipalign|true"
+    "xmlstarlet|xmlstarlet|xmlstarlet|false"
+    "zipalign|android-sdk-build-tools|zipalign|false"
 )
 
 DETECTED_DISTRO_TYPE=""

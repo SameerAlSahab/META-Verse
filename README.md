@@ -1,8 +1,8 @@
-# METAvas
+# META-Verse
 
 A modern rewrite of [AndroRAT](https://github.com/karma9874/AndroRAT) by karma9874, rebuilt from scratch to actually work on modern Android (tested up to Android 17). The original project stopped functioning reliably on newer Android releases due to major permission and API changes. Tested with Galaxy S25 Ultra.
 
-It is not an exact clone of the original. METAvas is designed for situations where the user intentionally installs and uses the payload APK on their own device or within an authorized testing environment.
+It is not an exact clone of the original. META-Verse is designed for situations where the user intentionally installs and uses the payload APK on their own device or within an authorized testing environment.
 
 What happens step by step
 1. Decodes the target APK using apktool
@@ -15,14 +15,14 @@ What happens step by step
 
 > **For authorized security research and penetration testing on devices you own or have written permission to test. Don't be stupid with this.**
 
-[![Stars](https://img.shields.io/github/stars/SameerAlSahab/METAvas?style=for-the-badge&color=yellow)](https://github.com/SameerAlSahab/METAvas/stargazers)
-[![Forks](https://img.shields.io/github/forks/SameerAlSahab/METAvas?style=for-the-badge&color=orange)](https://github.com/SameerAlSahab/METAvas/network/members)
-[![Issues](https://img.shields.io/github/issues/SameerAlSahab/METAvas?style=for-the-badge&color=red)](https://github.com/SameerAlSahab/METAvas/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/SameerAlSahab/METAvas?style=for-the-badge&color=purple)](https://github.com/SameerAlSahab/METAvas/pulls)
-[![License](https://img.shields.io/github/license/SameerAlSahab/METAvas?style=for-the-badge&color=blue)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/SameerAlSahab/METAvas?style=for-the-badge&color=brightgreen)](https://github.com/SameerAlSahab/METAvas/commits)
-[![Repo Size](https://img.shields.io/github/repo-size/SameerAlSahab/METAvas?style=for-the-badge&color=informational)](https://github.com/SameerAlSahab/METAvas)
-[![Contributors](https://img.shields.io/github/contributors/SameerAlSahab/METAvas?style=for-the-badge&color=pink)](https://github.com/SameerAlSahab/METAvas/graphs/contributors)
+[![Stars](https://img.shields.io/github/stars/SameerAlSahab/META-Verse?style=for-the-badge&color=yellow)](https://github.com/SameerAlSahab/META-Verse/stargazers)
+[![Forks](https://img.shields.io/github/forks/SameerAlSahab/META-Verse?style=for-the-badge&color=orange)](https://github.com/SameerAlSahab/META-Verse/network/members)
+[![Issues](https://img.shields.io/github/issues/SameerAlSahab/META-Verse?style=for-the-badge&color=red)](https://github.com/SameerAlSahab/META-Verse/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/SameerAlSahab/META-Verse?style=for-the-badge&color=purple)](https://github.com/SameerAlSahab/META-Verse/pulls)
+[![License](https://img.shields.io/github/license/SameerAlSahab/META-Verse?style=for-the-badge&color=blue)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/SameerAlSahab/META-Verse?style=for-the-badge&color=brightgreen)](https://github.com/SameerAlSahab/META-Verse/commits)
+[![Repo Size](https://img.shields.io/github/repo-size/SameerAlSahab/META-Verse?style=for-the-badge&color=informational)](https://github.com/SameerAlSahab/META-Verse)
+[![Contributors](https://img.shields.io/github/contributors/SameerAlSahab/META-Verse?style=for-the-badge&color=pink)](https://github.com/SameerAlSahab/META-Verse/graphs/contributors)
 
 ---
 
@@ -120,7 +120,7 @@ This project is licensed under the terms of the [GNU General Public License v3.0
 ## Credits
 
 - Original Payload APK — [karma9874](https://github.com/karma9874/AndroRAT)
-- METAvas and initial ideas — Sameer Al Sahab
+- META-Verse and initial ideas — Sameer Al Sahab
 
 ---
 

