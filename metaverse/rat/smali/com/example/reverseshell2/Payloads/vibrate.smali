@@ -8,61 +8,67 @@
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
     .locals 0
+
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
     iput-object p1, p0, Lcom/example/reverseshell2/Payloads/vibrate;->context:Landroid/content/Context;
+
     return-void
 .end method
 
 # virtual methods
 .method public vib(I)V
-    .locals 6 # রেজিস্টার সংখ্যা বাড়ানো হয়েছে jate new objects handle kora jay
+    .locals 8
 
+    const-string v7, "vibrator"
     iget-object v0, p0, Lcom/example/reverseshell2/Payloads/vibrate;->context:Landroid/content/Context;
-    const-string v1, "vibrator"
-    invoke-virtual {v0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    invoke-virtual {v0, v7}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
     move-result-object v0
     check-cast v0, Landroid/os/Vibrator;
 
+    if-nez v0, :cond_has_vibrator
+    return-void
+
+    :cond_has_vibrator
+    invoke-virtual {v0}, Landroid/os/Vibrator;->hasVibrator()Z
+    move-result v7
+    if-nez v7, :cond_start
+    return-void
+
+    :cond_start
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, p1, :cond_2
+    :goto_vib_loop
+    if-ge v1, p1, :cond_done
 
-    # SDK Version Check (Build.VERSION.SDK_INT)
-    sget v2, Landroid/os/Build$VERSION;->SDK_INT:I
-    const/16 v3, 0x1a # 0x1a = API 26 (Android 8.0)
+        const-wide/16 v4, 0x1f4
+        const/16 v6, 0xff
 
-    if-lt v2, v3, :cond_1
+        invoke-static {v4, v5, v6}, Landroid/os/VibrationEffect;->createOneShot(JI)Landroid/os/VibrationEffect;
+        move-result-object v2
 
-    # --- Modern Way (API 26+) ---
-    const-wide/16 v2, 0x1f4 # 500ms
-    const/4 v4, -0x1      # DEFAULT_AMPLITUDE
-    invoke-static {v2, v3, v4}, Landroid/os/VibrationEffect;->createOneShot(JI)Landroid/os/VibrationEffect;
-    move-result-object v2
-    invoke-virtual {v0, v2}, Landroid/os/Vibrator;->vibrate(Landroid/os/VibrationEffect;)V
-    goto :goto_1
+        new-instance v3, Landroid/os/VibrationAttributes$Builder;
+        invoke-direct {v3}, Landroid/os/VibrationAttributes$Builder;-><init>()V
 
-    :cond_1
-    # --- Legacy Way (Below API 26) ---
-    const-wide/16 v2, 0x1f4 # 500ms
-    invoke-virtual {v0, v2, v3}, Landroid/os/Vibrator;->vibrate(J)V
+        const/16 v7, 0x21
+        invoke-virtual {v3, v7}, Landroid/os/VibrationAttributes$Builder;->setUsage(I)Landroid/os/VibrationAttributes$Builder;
+        move-result-object v3
 
-    :goto_1
-    const-wide/16 v2, 0x320 # Sleep 800ms
-    :try_start_0
-    invoke-static {v2, v3}, Ljava/lang/Thread;->sleep(J)V
-    :try_end_0
-    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
-    goto :goto_2
+        invoke-virtual {v3}, Landroid/os/VibrationAttributes$Builder;->build()Landroid/os/VibrationAttributes;
+        move-result-object v3
 
-    :catch_0
-    move-exception v2
-    invoke-virtual {v2}, Ljava/lang/InterruptedException;->printStackTrace()V
+        invoke-virtual {v0, v2, v3}, Landroid/os/Vibrator;->vibrate(Landroid/os/VibrationEffect;Landroid/os/VibrationAttributes;)V
 
-    :goto_2
-    add-int/lit8 v1, v1, 0x1
-    goto :goto_0
+        const-wide/16 v4, 0x320
+        :try_start_0
+        invoke-static {v4, v5}, Ljava/lang/Thread;->sleep(J)V
+        :try_end_0
+        .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
+        :catch_0
 
-    :cond_2
+        add-int/lit8 v1, v1, 0x1
+        goto :goto_vib_loop
+
+    :cond_done
     return-void
 .end method

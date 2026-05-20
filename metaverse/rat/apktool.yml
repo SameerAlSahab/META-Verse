@@ -4,7 +4,7 @@ usesFramework:
   ids:
   - 1
 sdkInfo:
-  minSdkVersion: 16
+  minSdkVersion: 23
   targetSdkVersion: 37
 versionInfo:
   versionCode: 1

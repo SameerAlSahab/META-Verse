@@ -756,7 +756,7 @@
     goto/16 :goto_3
 
     :cond_b
-    const-string v0, "vibrate \\d"
+    const-string v0, "vibrate \\d+"
 
     invoke-virtual {v10, v0}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
 

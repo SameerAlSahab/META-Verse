@@ -94,6 +94,7 @@ METAVERSE:/>
 | `deviceInfo` | Basic device info (model, Android version, etc.) |
 | `getSMS inbox` | Dumps inbox SMS to a timestamped file in `Dumps/` |
 | `getSMS sent` | Same for sent messages |
+| `vibrate [number]` | Vibrates the device given times |
 | `getCallLogs` | Dumps call history to `Dumps/` |
 | `getIP` | Returns the device's IP address |
 | `shell` | Drops into an interactive shell on the device |

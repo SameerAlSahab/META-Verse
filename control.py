@@ -180,6 +180,7 @@ def print_help():
     getSMS [inbox|sent]     dump SMS to file
     getCallLogs             dump call log to file
     getIP                   device IP address
+    vibrate [number]        vibrates the device for given times
     shell                   interactive device shell
     help                    show this menu
     clear                   clear screen
